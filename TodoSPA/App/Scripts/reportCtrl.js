@@ -9,6 +9,42 @@ angular.module('todoApp')
 	adalService.acquireToken("https://analysis.windows.net/powerbi/api");// {
     var token = window.sessionStorage.getItem('adal.access.token.keyhttps://analysis.windows.net/powerbi/api'); 
 
+	      	$scope.reportIDSelection = null;
+	      	$scope.testAccounts = [];
+      $http({
+      method: 'GET',
+      url: 'https://api.powerbi.com/beta/myorg/reports',
+      headers: {
+        'Authorization': "Bearer " + token //'Bearer ' + token
+      }}).then(function apiResponse(response) {
+      	// console.log(response);
+      	// console.log(error);
+      	// console.log(body);
+	      if (response != "undefined") {
+	      	var reportIdList = [];
+	      	var item = '';
+	      	response.data.value.forEach(function(item){
+	      		// console.log(item.id);
+	      		reportIdList.push(item.id);
+	      	})
+	      	// for (item in response.data.value){
+	      	// 	console.log(item);
+	      	// 	reportIdList.push(item.id);
+	      	// }
+	      	// console.log(reportIdList);
+	      	$scope.testAccounts = reportIdList;
+	      	// console.log(response);
+		      // console.log('tokenString: ' + token);
+		      // console.log('Status:', response.statusCode);
+		      // console.log('Headers:', JSON.stringify(response.headers));
+		      // console.log('Response:', JSON.stringify(response.data));
+			}
+    	});
+
+    $scope.showSelectedValue = function (mySelect){
+    	console.log(mySelect);
+    	$scope.selectedReportId = mySelect;
+    }
     $scope.loadReport = function () {
         // test = window.sessionStorage.getItem('adal.idtoken');
         // console.log(adalService);
@@ -23,10 +59,13 @@ angular.module('todoApp')
 
 
 		// Read embed application token from textbox
-		var txtAccessToken = token;
+		var txtAccessToken = window.sessionStorage.getItem('adal.access.token.keyhttps://analysis.windows.net/powerbi/api');
 		// var txtAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Il9VZ3FYR190TUxkdVNKMVQ4Y2FIeFU3Y090YyIsImtpZCI6Il9VZ3FYR190TUxkdVNKMVQ4Y2FIeFU3Y090YyJ9.eyJhdWQiOiJodHRwczovL2FuYWx5c2lzLndpbmRvd3MubmV0L3Bvd2VyYmkvYXBpIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZTE2MzQ2YWUtZWVjMS00MjYwLWFiNTEtYWMxMDJmYTA1NGJlLyIsImlhdCI6MTQ4Nzg5OTg3NiwibmJmIjoxNDg3ODk5ODc2LCJleHAiOjE0ODc5MDM3NzYsImFjciI6IjEiLCJhbXIiOlsicHdkIiwibWZhIl0sImFwcGlkIjoiMmFkNWRiYTctYjM1OS00ODNjLTg5ZTItM2RhNTg3OGViOGU1IiwiYXBwaWRhY3IiOiIwIiwiZV9leHAiOjEwODAwLCJmYW1pbHlfbmFtZSI6IldvbmciLCJnaXZlbl9uYW1lIjoiQW5kcmV3IiwiaXBhZGRyIjoiOTAuMjEwLjQ5LjI0IiwibmFtZSI6IkFuZHJldyBXb25nIiwib2lkIjoiYTYwMzNlZjctODMxYS00NjdmLTkyMjMtNmJmZjFkNzMzZTQ1IiwicGxhdGYiOiI1IiwicHVpZCI6IjEwMDMwMDAwOUI2ODA3NjQiLCJzY3AiOiJEYXRhc2V0LlJlYWQuQWxsIEdyb3VwLlJlYWQgUmVwb3J0LlJlYWQuQWxsIiwic3ViIjoiU3cxYjFqVURXQlRtdTZzTUtqYkUzczdReFJUUFh4WkpITm8xT012SldsTSIsInRpZCI6ImUxNjM0NmFlLWVlYzEtNDI2MC1hYjUxLWFjMTAyZmEwNTRiZSIsInVuaXF1ZV9uYW1lIjoiQW5kcmV3LldvbmdAaG9tZW9mZmljZWdzaWdvdnVrLm9ubWljcm9zb2Z0LmNvbSIsInVwbiI6IkFuZHJldy5Xb25nQGhvbWVvZmZpY2Vnc2lnb3Z1ay5vbm1pY3Jvc29mdC5jb20iLCJ2ZXIiOiIxLjAifQ.6bOX5j-rIhOWocOLsQcwpvpsBVmYjFrs429NapBvKNKFP6bXWXyofHe-_mOU3K5AWzXMjviaXdle03nPkcBS8dPQU5cw-GlhjVUUcvXfqXpjGNecFuVpOUA1iiTNm0EWrhB9vg-FOa1rXEAezypdl91OarZcTeWXqXEoa6ltV51irJLVzeq8rjIJGRmYWE0Iy4kszmIUufmFbYXGz1B5T2pgWACkK101U3MmUH-B0UlQ6jCFRT0-G34rAAiDL_2gYTqn7zkcwwr8MB7Ejam0pS_FmR16sASy3yon66JF7Qncil4xru_3LZEc1GiNTpKj90t8Cr0W_HQQ6TYAv-mEww";
-		console.log('Token Used: ');
-		console.log(txtAccessToken);
+		// console.log('Token Used: ');
+		// console.log(txtAccessToken);
+		var reportId = $scope.selectedReportId;
+		console.log(reportId);
+
 
 	    // $http({
 	    //   method: 'GET',
@@ -49,10 +88,10 @@ angular.module('todoApp')
 		// Read embed URL from textbox
 
 
-		var txtEmbedUrl = 'https://app.powerbi.com/reportEmbed?reportId=' + $('#pbirptid').val();//$('#txtReportEmbed').val();
+		var txtEmbedUrl = 'https://app.powerbi.com/reportEmbed?reportId=' + reportId;//$('#pbirptid').val();//$('#txtReportEmbed').val();
 
 		// Read report Id from textbox
-		var txtEmbedReportId = $('#pbirptid').val();
+		var txtEmbedReportId = reportId;//$('#pbirptid').val();
 
 		// Embed configuration used to describe the what and how to embed.
 		// This object is used when calling powerbi.embed.
@@ -93,22 +132,22 @@ angular.module('todoApp')
 		});
 
 //--------------------- PowerBI-Client Approach - End -----------------------------
-    $http({
-      method: 'GET',
-      url: 'https://api.powerbi.com/beta/myorg/reports',
-      headers: {
-        'Authorization': "Bearer " + token //'Bearer ' + token
-      }}).then(function apiResponse(response) {
-      	// console.log(response);
-      	// console.log(error);
-      	// console.log(body);
-	      if (response != "undefined") {
-		      console.log('tokenString: ' + token);
-		      console.log('Status:', response.statusCode);
-		      console.log('Headers:', JSON.stringify(response.headers));
-		      console.log('Response:', JSON.stringify(response.data));
-			}
-    	});
+   //  $http({
+   //    method: 'GET',
+   //    url: 'https://api.powerbi.com/beta/myorg/reports',
+   //    headers: {
+   //      'Authorization': "Bearer " + token //'Bearer ' + token
+   //    }}).then(function apiResponse(response) {
+   //    	// console.log(response);
+   //    	// console.log(error);
+   //    	// console.log(body);
+	  //     if (response != "undefined") {
+		 //      console.log('tokenString: ' + token);
+		 //      console.log('Status:', response.statusCode);
+		 //      console.log('Headers:', JSON.stringify(response.headers));
+		 //      console.log('Response:', JSON.stringify(response.data));
+			// }
+   //  	});
     };
 }]);
 

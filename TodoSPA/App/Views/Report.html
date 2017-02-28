@@ -1,16 +1,18 @@
 <div class="report-container" >
 	<h1 id='report-container-header'>Power BI Report</h1>
 	<div class="report-id-input">
-        <input ng-model="reportId" class="form-control" type="text" id="pbirptid" placeholder="4dbb8f18-0933-490c-8ee9-31d1d3f11284"/>
+        <input ng-model="reportId" class="form-control" type="text" placeholder="4dbb8f18-0933-490c-8ee9-31d1d3f11284"/>
         <select ng-model="reportIDSelection"
-        		ng-options="item.Id as item.Name for item in testAccounts">
+        		ng-options="item for item in testAccounts"
+        		ng-change="showSelectedValue(reportIDSelection)"
+        		id="pbirptid">
         		<option value="">Select Account</option>
         </select>
         <span class="report-id-input-btn">
             <button ng-click="loadReport();" class="btn btn-default">Load Report</button>
         </span>
         <br>
-        <p id='reportIdPara'>Report ID: {{reportId}}</p>
+        <p id='reportIdPara'>Report ID: {{reportIDSelection}}</p>
         <p id='appTokenPara'></p>
     </div>
 <!-- 	<button onclick="testbutton()">Test Button</button>
