@@ -222,6 +222,7 @@ if (typeof module !== 'undefined' && module.exports) {
                                 deferred.reject(error);
                             } else {
                                 deferred.resolve(tokenOut);
+                                console.log("tokenOut = " + tokenOut);
                             }
                         });
 

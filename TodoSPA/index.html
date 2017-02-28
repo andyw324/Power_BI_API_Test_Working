@@ -26,6 +26,7 @@
                     <li ng-class="{ active: isActive('/Home') }"><a href="#/Home">Home</a></li>
                     <li ng-class="{ active: isActive('/TodoList') }"><a href="#/TodoList">To Do List</a></li>
                     <li ng-class="{ active: isActive('/ToGoList') }"><a href="#/ToGoList">To Go List</a></li>
+                    <li ng-class="{ active: isActive('/Report') }"><a href="#/Report" ng-show="userInfo.isAuthenticated">Reports</a></li>
                     <li ng-class="{ active: isActive('/UserData') }"><a href="#/UserData" ng-show="userInfo.isAuthenticated">User</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -67,5 +68,7 @@
         <script src="App/Scripts/todoListSvc.js"></script>
         <script src="App/Scripts/toGoListSvc.js"></script>
         <script src="App/Scripts/toGoListCtrl.js"></script>
+        <script src="App/Scripts/reportCtrl.js"></script>
+        <script src="bower_components/powerbi-client/dist/powerbi.js"></script>
 </body>
 </html>
