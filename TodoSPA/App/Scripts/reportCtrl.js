@@ -5,17 +5,21 @@ angular.module('todoApp')
     console.log('Scope is as follows:');
     console.log($scope);
     console.log('idtoken: ' + window.sessionStorage.getItem('adal.idtoken'));
+
+	adalService.acquireToken("https://analysis.windows.net/powerbi/api");// {
+    var token = window.sessionStorage.getItem('adal.access.token.keyhttps://analysis.windows.net/powerbi/api'); 
+
     $scope.loadReport = function () {
         // test = window.sessionStorage.getItem('adal.idtoken');
-        console.log(adalService);
+        // console.log(adalService);
 	 //    var outputTo = document.getElementById('appTokenPara');
 	    // var token = adalService.getCachedToken("4dbb8f18-0933-490c-8ee9-31d1d3f11284"); //
 	    
 	    // ---------------------------------
 	    // var token = 
-	    adalService.acquireToken("https://analysis.windows.net/powerbi/api");// {
-	    	console.log("Acquired token? - no idea");
-	    var token = window.sessionStorage.getItem('adal.access.token.keyhttps://analysis.windows.net/powerbi/api'); //}; //window.sessionStorage.getItem('adal.idtoken');
+	    // adalService.acquireToken("https://analysis.windows.net/powerbi/api");// {
+	    // 	console.log("Acquired token? - no idea");
+	    // var token = window.sessionStorage.getItem('adal.access.token.keyhttps://analysis.windows.net/powerbi/api'); //}; //window.sessionStorage.getItem('adal.idtoken');
 
 
 		// Read embed application token from textbox
