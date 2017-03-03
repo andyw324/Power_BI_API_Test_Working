@@ -44,6 +44,11 @@ angular.module('todoApp', ['ngRoute','AdalAngular'])
    // console.log(adalProvider.config.endpoints);
 }]);
 
+
+// Function initialises the Data Selection API call from Power BI. This function is triggered by any interaction
+// with the report and will call the generateQryString function to generate the personal data API GET URL based
+// on the Power BI API returned JSON.
+
 function initializeDataSelection(report, $dataSelectedContainer, $scope) {
   report.on('dataSelected', event => {
     console.log('dataSelected: ', event);
@@ -62,16 +67,8 @@ function initializeDataSelection(report, $dataSelectedContainer, $scope) {
   });
 }
 
-function getDataSelection(report) {//, result) {
-  report.on('dataSelected', event => {
-    console.log('dataSelected: ', event);
-
-    var data = event.detail;
-
-    return data.dataPoints;
-    // console.log(result);
-  });
-}
+// generates the GET URI including query string for the call to the server side REST API. Query string created
+// using the Power BI API - namely the report.on('dataSelected'... call.
 
 function generateQryString(data) {
     var i, j, qryString, text, iLen, jLen, item;
