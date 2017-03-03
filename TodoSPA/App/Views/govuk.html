@@ -117,7 +117,39 @@
   
   <main id="content" role="main" class="whitehall-content">
 
-    <p>add stuff here</p>
+    <div class="container" role="main">
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1" style="background-color:azure">
+                <div class="page-header">
+                    <h1>Power BI To On-Premise PD Drill Down</h1>
+                </div>
+                <p>This is a Proof of Concept to demonstrate how it may be possible to use an embedded Power BI report to drive filtering of On-Premise data.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <div ng-view class="panel-body">
+
+                </div>
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.2.25/angular-route.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script src="App/Scripts/adal.js"></script>
+        <script src="App/Scripts/adal-angular.js"></script>
+        <script src="App/Scripts/app.js"></script>
+        <script src="App/Scripts/homeCtrl.js"></script>
+        <script src="App/Scripts/userDataCtrl.js"></script>
+        <script src="App/Scripts/todoListCtrl.js"></script>
+        <script src="App/Scripts/todoListSvc.js"></script>
+        <script src="App/Scripts/toGoListSvc.js"></script>
+        <script src="App/Scripts/toGoListCtrl.js"></script>
+        <script src="App/Scripts/reportCtrl.js"></script>
+        <script src="bower_components/powerbi-client/dist/powerbi.js"></script>
+
+
   </main>
 
 </div>

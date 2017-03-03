@@ -5,7 +5,8 @@ angular.module('todoApp')
     console.log('Scope is as follows:');
     console.log($scope);
     console.log('idtoken: ' + window.sessionStorage.getItem('adal.idtoken'));
-
+	console.log('DataSelected is:');
+    console.log($scope.dataSelected);
 	adalService.acquireToken("https://analysis.windows.net/powerbi/api");// {
     var token = window.sessionStorage.getItem('adal.access.token.keyhttps://analysis.windows.net/powerbi/api'); 
 
@@ -78,8 +79,10 @@ angular.module('todoApp')
 
 		// Embed the report and display it within the div container.
 		var report = powerbi.embed(reportContainer, config);
-		initializeDataSelection(report,$('#dataSelectedContainer'));
-
+		initializeDataSelection(report,$('#dataSelectedContainer'),$scope);
+		console.log($scope.dataSelected);
+		// var qryString = getDataSelection(report);//,qryString);
+		// console.log(qryString);
 
 		// Report.off removes a given event handler if it exists.
 		report.off("loaded");
