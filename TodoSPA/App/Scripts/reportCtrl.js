@@ -22,10 +22,10 @@ angular.module('todoApp')
 	      	var reportIdList = [];
 	      	var item = '';
 	      	response.data.value.forEach(function(item){
-	      		// console.log(item.id);
-	      		reportIdList.push(item.id);
+	      		// console.log(item);
+	      		reportIdList.push({"id":item.id,"name":item.name});
 	      	})
-
+      		console.log(reportIdList);
 	      	$scope.testAccounts = reportIdList;
 	      	// console.log(response);
 		      // console.log('tokenString: ' + token);
@@ -34,7 +34,7 @@ angular.module('todoApp')
 		      // console.log('Response:', JSON.stringify(response.data));
 			}
     	});
-
+      
     $scope.showSelectedValue = function (mySelect){
     	console.log(mySelect);
     	$scope.selectedReportId = mySelect;
@@ -78,6 +78,8 @@ angular.module('todoApp')
 
 		// Embed the report and display it within the div container.
 		var report = powerbi.embed(reportContainer, config);
+		initializeDataSelection(report,$('#dataSelectedContainer'));
+
 
 		// Report.off removes a given event handler if it exists.
 		report.off("loaded");
